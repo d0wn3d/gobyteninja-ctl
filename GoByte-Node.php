@@ -23,7 +23,7 @@ namespace GoByte;
 
 use Exception;
 
-define('PROTOCOL_VERSION',70210);
+define('PROTOCOL_VERSION',70211);
 define('PROTOCOL_MAGIC',"\xbf\x0c\x6b\xbd");
 define('HRVERSION',"/GoByte Core:%s/GoByte Ninja Port Checker:%s.%d/");
 define('THISVERSION',6);
@@ -55,7 +55,7 @@ class Node {
         private $subver;
         private $prot_magic;
 
-	public function __construct($ip, $bindip, $port = 12455, $timeout = 5, $versionid = '1.0.0', $sversionid = '0.16.2.1', $protver = PROTOCOL_VERSION, $prot_magic = PROTOCOL_MAGIC) {
+	public function __construct($ip, $bindip, $port = 12455, $timeout = 5, $versionid = '1.0.0', $sversionid = '0.16.2.2', $protver = PROTOCOL_VERSION, $prot_magic = PROTOCOL_MAGIC) {
 
 		$this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		if ($this->sock === false) {
