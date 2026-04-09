@@ -150,17 +150,17 @@ else {
   echo "Failed (GET)\n";
 }*/
 
-xecho("Fetching from itBit: ");
-$res = file_get_contents('https://api.itbit.com/v1/markets/XBTUSD/ticker');
+xecho("Fetching from KlingEx: ");
+$res = file_get_contents('https://api.klingex.io/api/tickers');
 if ($res !== false) {
   $res = json_decode($res,true);
-  if (($res !== false) && is_array($res) && array_key_exists('pair',$res) && ($res["pair"] == "XBTUSD") && array_key_exists('lastPrice',$res) && array_key_exists('serverTimeUTC',$res)) {
-    $timestamp = strtotime($res['serverTimeUTC']);
+  if (($res !== false) && is_array($res) && array_key_exists('ticker_id',$res) && ($res["ticker_id"] == "GBX_USDT") && array_key_exists('last_price',$res)) {
+    $timestamp = time();
     $tbstamp = date('Y-m-d H:i:s',$timestamp);
-    $tp["usdbtc"] = array("StatValue" => floatval($res["lastPrice"]),
+    $tp["usdbtc"] = array("StatValue" => floatval($res["last_price"]),
         "LastUpdate" => intval($timestamp),
-        "Source" => "itbit");
-    echo "OK (".$res['lastPrice']." / $tbstamp)\n";
+        "Source" => "klingex");
+    echo "OK (".$res['last_price']." / $tbstamp)\n";
   }
   else {
     echo "Failed (JSON)\n";
